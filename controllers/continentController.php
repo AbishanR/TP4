@@ -20,10 +20,12 @@ include ('vues/listeContinents.php');
     if(empty($_POST['num'])){
         $continent->setLibelle($_POST['libelle']);
         $nb=Continent::add($continent);
-        $message = "modifié";
+        $message = "ajouté";
     }else{
-        $continent->setNum($_POST['libelle']);
+        $continent->setNum($_POST['num']);
         $continent->setLibelle($_POST['libelle']);
+        $nb=Continent::update($continent);
+        $message = "modifié";
     }
 
     if($nb==1){

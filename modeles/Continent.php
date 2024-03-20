@@ -119,6 +119,20 @@ public function setLibelle(string $libelle) : self
         return $nb;
     }
 
+
+/**
+ * Set numero du continent
+ *
+ * @param  int  $num  numero du continent
+ *
+ * @return  self
+ */ 
+public function setNum(int $num) : self
+{
+$this->num = $num;
+
+return $this;
+}
 }
 
 ?>
