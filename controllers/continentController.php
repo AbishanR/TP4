@@ -11,9 +11,19 @@ include ('vues/listeContinents.php');
         break;
     case'update':
         $mode="Modifier";
+        $continent=Continent::findById($_GET['num']);
         include('vues/formContinent.php');
         break;
     case'delete':
+        $continent=Continent::findById($_GET['num']);
+        $nb=Continent::delete($continent);
+        if($nb==1){
+            $_SESSION['message']=["success"=>"Le continent a bien été $message"];
+            }else{
+            $_SESSION['message']=["danger"=>"Le continent a bien été $message"];
+            }
+            header('location: index.php?uc=continents&action=list');
+            exit();
         break;
     case'validForm':
     $continent= New Continent();
@@ -28,12 +38,7 @@ include ('vues/listeContinents.php');
         $message = "modifié";
     }
 
-    if($nb==1){
-    $_SESSION['message']=["success"=>"Le continent a bien été $message"];
-    }else{
-    $_SESSION['message']=["danger"=>"Le continent a bien été $message"];
-    }
-    header('location: index.php?uc=continents&action=list');
+
     break;
 }
 ?>

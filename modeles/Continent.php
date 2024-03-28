@@ -84,7 +84,8 @@ public function setLibelle(string $libelle) : self
     public static function add(Continent $continent) :int
     {
         $req=MonPdo::getInstance()->prepare("insert into continent(libelle) value(:libelle)");
-        $req->bindParam(':libelle',$continent->getLibelle());
+        $libelle=$continent->getLibelle();
+        $req->bindParam(':libelle',$libelle);
         $nb=$req->execute();
         return $nb;
     }
@@ -99,8 +100,10 @@ public function setLibelle(string $libelle) : self
     public static function update(Continent $continent):int
     {
         $req=MonPdo::getInstance()->prepare("update continent set libelle= :libelle where num= :id");
-        $req->bindParam(':id',$continent->getNum());
-        $req->bindParam(':libelle',$continent->getLibelle());
+        $num=$continent->getNum();
+        $libelle=$continent->getLibelle();
+        $req->bindParam(':id', $num);
+        $req->bindParam(':libelle', $libelle);
         $nb=$req->execute();
         return $nb;
     }
