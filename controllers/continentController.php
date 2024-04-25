@@ -17,6 +17,7 @@ include ('vues/listeContinents.php');
     case'delete':
         $continent=Continent::findById($_GET['num']);
         $nb=Continent::delete($continent);
+        $message = "supprimé";
         if($nb==1){
             $_SESSION['message']=["success"=>"Le continent a bien été $message"];
             }else{
@@ -25,20 +26,25 @@ include ('vues/listeContinents.php');
             header('location: index.php?uc=continents&action=list');
             exit();
         break;
-    case'validForm':
-    $continent= New Continent();
-    if(empty($_POST['num'])){
+        case'validForm':
+        $continent= New Continent();
+        if(empty($_POST['num'])){
         $continent->setLibelle($_POST['libelle']);
         $nb=Continent::add($continent);
         $message = "ajouté";
-    }else{
+        }else{
         $continent->setNum($_POST['num']);
         $continent->setLibelle($_POST['libelle']);
         $nb=Continent::update($continent);
         $message = "modifié";
-    }
-
-
-    break;
+        }
+        if($nb==1){
+            $_SESSION['message']=["success"=>"Le continent a bien été $message"];
+        }else{
+            $_SESSION['message']=["danger"=>"Le continent a bien été $message"];
+        }
+        header('location: index.php?uc=continents&action=list');
+        exit();
+        break;
 }
 ?>

@@ -112,8 +112,8 @@ public function setLibelle(string $libelle) : self
     public static function add(Nationalite $nationalite) :int
     {
         $req=MonPdo::getInstance()->prepare("insert into nationalite(libelle, numContinent) value(:libelle, :numContinent)");
-        $req->bindParam(':libelle',$nationalite->getLibelle());
-        $req->bindParam(':numContinent',$nationalite->numContinent());
+        $libelle=$nationalite->getLibelle();
+        $req->bindParam(':libelle',$libelle);
         $nb=$req->execute();
         return $nb;
     }
@@ -128,9 +128,10 @@ public function setLibelle(string $libelle) : self
     public static function update(Nationalite $nationalite):int
     {
         $req=MonPdo::getInstance()->prepare("update nationalite set libelle= :libelle, numContinent= :numContinent where num= :id");
-        $req->bindParam(':id',$nationalite->getNum());
-        $req->bindParam(':libelle',$nationalite->getLibelle());
-        $req->bindParam(':numContinent',$nationalite->numContinent());
+        $num=$nationalite->getNum();
+        $libelle=$nationalite->getLibelle();
+        $req->bindParam(':id',$nationalite->$num);
+        $req->bindParam(':libelle', $libelle);
         $nb=$req->execute();
         return $nb;
     }
