@@ -1,66 +1,64 @@
 <main role="main">
 
-  <!-- Main jumbotron for a primary marketing message or call to action -->
-  <div class="jumbotron">
+ 
+  <div class="jumbotron container">
     <div class="container">
-      <h1 class="display-3">Hello, world!</h1>
-      <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-      <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+      <h1 class="display-3">FURET DU NORD</h1>
+      
     </div>
   </div>
 
-  <div class="container" pt-5>
-    <!-- Example row of columns -->
-    <div class="row">
-      <div class="col-md-4">
-        <h2>Heading</h2>
-        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-      </div>
-      <div class="col-md-4">
-        <h2>Heading</h2>
-        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-      </div>
-      <div class="col-md-4">
-        <h2>Heading</h2>
-        <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-      </div>
-    </div>
-
+  <div class="container mt-5">
+    
+    <?php
+ 
+ $dataPoints = array(
+   array("label"=> "BD", "y"=> 18.37),
+   array("label"=> "Essai", "y"=> 6.12),
+   array("label"=> "Roman Comtemporain", "y"=> 4.08),
+   array("label"=> "Litterature", "y"=> 8.16),
+   array("label"=> "Terreur", "y"=> 16.03),
+   array("label"=> "Science-fiction", "y"=> 10.33),
+   
+ );
+   
+ ?>
+ <!DOCTYPE HTML>
+ <html>
+ <head>  
+ <script>
+ window.onload = function () {
+  
+ var chart = new CanvasJS.Chart("chartContainer", {
+   animationEnabled: true,
+   exportEnabled: true,
+   title:{
+     text: " types de livres"
+   },
+   subtitles: [{
+     text: "pleins de thèmes disponibles"
+   }],
+   data: [{
+     type: "pie",
+     showInLegend: "true",
+     legendText: "{label}",
+     indexLabelFontSize: 16,
+     indexLabel: "{label} - #percent%",
+     yValueFormatString: "$#,##0",
+     dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
+   }]
+ });
+ chart.render();
+  
+ }
+ </script>
+ </head>
+ <body>
+ <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+ <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
+ </body>
+ </html>                                   
     <hr>
 
-  </div> <!-- /container -->
-      <div class="container">
-  <div class="row">     
-          <div class="col-md-4">
-              <div class="card border-primary mb-3" style="max-width: 20rem;">
-        <div class="card-header">Header</div>
-        <div class="card-body">
-          <h4 class="card-title">Primary card title</h4>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        </div>
-  </div>
-          </div>
-          <div class="col-md-4">
-              <div class="card border-primary mb-3" style="max-width: 20rem;">
-        <div class="card-header">Header</div>
-        <div class="card-body">
-          <h4 class="card-title">Primary card title</h4>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        </div>
-  </div>
-          </div>
-          <div class="col-md-4">
-              <div class="card border-primary mb-3" style="max-width: 20rem;">
-        <div class="card-header">Header</div>
-        <div class="card-body">
-          <h4 class="card-title">Primary card title</h4>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        </div>
-  </div>
-          </div>
-        </div> 
-      </div>
+  
 </main>
